@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+    // previewFeatures = ["interactiveTransactions"]
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id        Int        @id @default(autoincrement())
+    username  String     @db.VarChar(25)
+    email     String     @unique @db.VarChar(255)
+    password  String?    @db.VarChar(255)
+    createdAt DateTime   @default(now())
+    updatedAt DateTime   @updatedAt
+    Session   Session[]
+    Follower  Follows[]  @relation("follower")
+    Followed  Follows[]  @relation("followed")
+    Wishlist  Wishlist[]
+    Post      Memories[]
+    pictures  pictures[]
+    Comments  Comments[]
+    likes     likes[]
+}
+
+model pictures {
+    id         Int      @id @default(autoincrement())
+    pictureUri String
+    userId     Int
+    User       User     @relation(fields: [userId], references: [id])
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+}
+
+model Follows {
+    id        Int      @id @default(autoincrement())
+    follower  Int
+    followed  Int
+    Followed  User     @relation("followed", fields: [followed], references: [id])
+    Follower  User     @relation("follower", fields: [follower], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Session {
+    id        Int      @id @default(autoincrement())
+    userId    Int
+    User      User     @relation(fields: [userId], references: [id])
+    token     String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Wishlist {
+    id          Int      @id @default(autoincrement())
+    userId      Int
+    User        User     @relation(fields: [userId], references: [id])
+    store       String   @db.VarChar(255)
+    price       Int
+    image       String   @db.VarChar(255)
+    description String   @db.VarChar(255)
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
+
+model Memories {
+    id          Int        @id @default(autoincrement())
+    userId      Int
+    User        User       @relation(fields: [userId], references: [id])
+    store       String     @db.VarChar(255)
+    description String     @db.VarChar(500)
+    image       String     @db.VarChar(255)
+    price       Int
+    createdAt   DateTime   @default(now())
+    updatedAt   DateTime   @updatedAt
+    Comments    Comments[]
+    likes       likes[]
+}
+
+model Comments {
+    id        Int      @id @default(autoincrement())
+    userId    Int
+    User      User     @relation(fields: [userId], references: [id])
+    memorieId Int
+    Memories  Memories @relation(fields: [memorieId], references: [id])
+    text      String   @db.VarChar(255)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model likes {
+    id        Int      @id @default(autoincrement())
+    userId    Int
+    User      User     @relation(fields: [userId], references: [id])
+    memorieId Int
+    Memories  Memories @relation(fields: [memorieId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
