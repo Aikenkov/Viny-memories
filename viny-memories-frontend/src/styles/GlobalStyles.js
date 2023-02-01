@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
  /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -65,9 +65,9 @@ a{
 }
 
 body{
-    background-color: var(--main-color);
+     background: rgb(51,51,51);
+background: radial-gradient(circle, rgba(51,51,51,1) 0%, rgba(70,70,70,1) 100%); 
 	font-family: 'Lato', sans-serif;
-
 }
 
 *{ 
@@ -75,25 +75,9 @@ body{
     margin: 0;
 
     //fonts
-    
     //font-family: 'Oswald', sans-serif;
     //font-family: 'Passion One', cursive;
     font-family: 'Lato', sans-serif;
-
-    //colors
-
-    --main-color: #333333;
-    --heavy-background: #171717;
-    --light-background: #EFEFEF;
-    --light-text: #707070;
-    --heavy-text: #FFFFFF;
-    --liked-heart: #AC0000;
-    --likes-text: #505050;
 }
-
-body {
-
-}
-
 `;
 export default GlobalStyles;
