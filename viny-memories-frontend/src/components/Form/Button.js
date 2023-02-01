@@ -10,9 +10,10 @@ export default function Button({ children, ...props }) {
 
 const StyledButton = styled.button`
   margin-top: 30px;
-  background-color: #333333;
-  color: #f3f3f3;
-  font-size: 15px;
+  background-color: var(--main-color);
+  color: var(--main-text);
+  font-size: 16px;
+  font-weight: 700;
   width: 100%;
   border-radius: 10px;
   height: 30px;

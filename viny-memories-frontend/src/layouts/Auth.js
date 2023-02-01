@@ -27,6 +27,13 @@ const Wrapper = styled.div`
     width: 50%;
     object-fit: cover;
   }
+
+  @media (max-width: 600px) {
+
+    image{
+        display: none;
+    }
+  }
 `;
 
 const Page = styled.div`

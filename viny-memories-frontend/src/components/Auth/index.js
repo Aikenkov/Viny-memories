@@ -7,6 +7,10 @@ export const FormConteiner = styled.div`
   justify-content: space-between;
   width: 50%;
   padding: 30px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 export const Title = styled.h1`
@@ -14,12 +18,14 @@ export const Title = styled.h1`
   margin-bottom: 30px;
   font-weight: 700;
   font-family: Georgia, 'Times New Roman', Times, serif;
+  color: var(--heavy-text);
 `;
 
 export const Label = styled.h1`
   font-size: 24px;
   margin-bottom: 10px;
   font-family: Georgia, 'Times New Roman', Times, serif;
+  color: var(--heavy-text);
 `;
 
 export const Row = styled.div`

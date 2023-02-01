@@ -65,19 +65,27 @@ a{
 }
 
 body{
-     background: rgb(51,51,51);
-background: radial-gradient(circle, rgba(51,51,51,1) 0%, rgba(70,70,70,1) 100%); 
-	font-family: 'Lato', sans-serif;
+     background: var(--heavy-color);
+     //background: radial-gradient(circle, rgba(51,51,51,1) 0%, rgba(70,70,70,1) 100%); 
+	 font-family: 'Lato', sans-serif;
 }
+
 
 *{ 
 	box-sizing: border-box;
     margin: 0;
 
     //fonts
-    //font-family: 'Oswald', sans-serif;
-    //font-family: 'Passion One', cursive;
     font-family: 'Lato', sans-serif;
+
+    //colors
+
+    --heavy-color: #161616;
+    --light-color: #292927;
+    --main-color: #9648EF;
+    --heavy-text: #111111;
+    --light-text: #DBDBDB;
+    --main-text: #FFFFFF;
 }
 `;
 export default GlobalStyles;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export default styled(Link)`
   text-decoration: none;
-  color: #222;
+  color: var(--heavy-text);
   margin-top: 15px;
 
   &:hover {
