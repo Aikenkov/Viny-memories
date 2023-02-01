@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 export default function Button({ children, ...props }) {
-  return <StyledButton {...props}>{children}</StyledButton>;
+  return (
+    <StyledButton disabled={props.disabled} {...props}>
+      {children}
+    </StyledButton>
+  );
 }
 
 const StyledButton = styled.button`
