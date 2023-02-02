@@ -7,6 +7,11 @@ export async function getMemories() {
   return memories;
 }
 
+export async function getFollowedUsersMemories(userId: number) {
+  const memories = await memorieRepository.findFollowed(userId);
+  return memories;
+}
+
 export async function getUserMemories(userId: number) {
   const memories = await memorieRepository.findByUserId(userId);
   return memories;
@@ -47,6 +52,7 @@ const memorieService = {
   postMemorie,
   deleteMemorie,
   getPrivateUserMemories,
+  getFollowedUsersMemories,
 };
 
 export default memorieService;

@@ -11,6 +11,16 @@ export async function listMemories(req: Request, res: Response) {
   }
 }
 
+export async function listFollowedUsersMemories(req: Request, res: Response) {
+  try {
+    const { userId } = res.locals;
+    const memories = await memorieService.getFollowedUsersMemories(userId);
+    return res.status(httpStatus.OK).json(memories);
+  } catch (error) {
+    return res.status(httpStatus.NOT_FOUND).send(error);
+  }
+}
+
 export async function listUserMemories(req: Request, res: Response) {
   try {
     const { userId } = res.locals;

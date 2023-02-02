@@ -15,9 +15,19 @@ async function find() {
   });
 }
 
-//TODO pegar memories de quem sigo
-async function findFollowed() {
+async function findFollowed(userId: number) {
   return prisma.memories.findMany({
+    where: {
+      isPrivate: false,
+      User: {
+        Follower: {
+          some: { follower: userId },
+        },
+      },
+    },
+    include: {
+      likes: true,
+    },
     orderBy: {
       createdAt: "desc",
     },
