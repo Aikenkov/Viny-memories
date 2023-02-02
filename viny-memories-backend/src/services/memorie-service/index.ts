@@ -12,14 +12,20 @@ export async function getUserMemories(userId: number): Promise<Memories[]> {
   return memories;
 }
 
+export async function getPrivateUserMemories(userId: number): Promise<Memories[]> {
+  const memories = await memorieRepository.findPrivateByUserId(userId);
+  return memories;
+}
+
 export async function postMemorie({
   userId,
   store,
   description,
   image,
   price,
+  isPrivate,
 }: CreateMemorieParams): Promise<Memories> {
-  const memories = await memorieRepository.create({ userId, store, description, image, price });
+  const memories = await memorieRepository.create({ userId, store, description, image, price, isPrivate });
   return memories;
 }
 
@@ -40,6 +46,7 @@ const memorieService = {
   getUserMemories,
   postMemorie,
   deleteMemorie,
+  getPrivateUserMemories,
 };
 
 export default memorieService;

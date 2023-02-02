@@ -22,12 +22,23 @@ export async function listUserMemories(req: Request, res: Response) {
   }
 }
 
+export async function listPrivateUserMemories(req: Request, res: Response) {
+  try {
+    const { userId } = res.locals;
+
+    const memories = await memorieService.getPrivateUserMemories(userId);
+    return res.status(httpStatus.OK).json(memories);
+  } catch (error) {
+    return res.status(httpStatus.NOT_FOUND).send(error);
+  }
+}
+
 export async function createMemorie(req: Request, res: Response) {
   try {
     const { userId } = res.locals;
-    const { store, description, image, price } = req.body;
+    const { store, description, image, price, isPrivate } = req.body;
 
-    const memories = await memorieService.postMemorie({ userId, store, description, image, price });
+    const memories = await memorieService.postMemorie({ userId, store, description, image, price, isPrivate });
     return res.status(httpStatus.OK).json(memories);
   } catch (error) {
     return res.status(httpStatus.UNPROCESSABLE_ENTITY).send(error);
