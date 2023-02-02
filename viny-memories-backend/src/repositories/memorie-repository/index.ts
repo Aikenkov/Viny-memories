@@ -6,6 +6,9 @@ async function find() {
     where: {
       isPrivate: false,
     },
+    include: {
+      likes: true,
+    },
     orderBy: {
       createdAt: "desc",
     },
@@ -27,6 +30,9 @@ async function findByUserId(userId: number) {
       userId,
       isPrivate: false,
     },
+    include: {
+      likes: true,
+    },
     orderBy: {
       createdAt: "desc",
     },
@@ -38,6 +44,9 @@ async function findPrivateByUserId(userId: number) {
     where: {
       userId,
       isPrivate: true,
+    },
+    include: {
+      likes: true,
     },
     orderBy: {
       createdAt: "desc",
@@ -70,6 +79,9 @@ async function findMemorieById(memorieId: number) {
   return prisma.memories.findFirst({
     where: {
       id: memorieId,
+    },
+    include: {
+      likes: true,
     },
   });
 }

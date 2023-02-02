@@ -39,7 +39,7 @@ export async function createMemorie(req: Request, res: Response) {
     const { store, description, image, price, isPrivate } = req.body;
 
     const memories = await memorieService.postMemorie({ userId, store, description, image, price, isPrivate });
-    return res.status(httpStatus.OK).json(memories);
+    return res.status(httpStatus.CREATED).json(memories);
   } catch (error) {
     return res.status(httpStatus.UNPROCESSABLE_ENTITY).send(error);
   }

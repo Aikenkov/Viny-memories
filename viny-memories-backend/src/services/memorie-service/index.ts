@@ -2,17 +2,17 @@ import memorieRepository from "@/repositories/memorie-repository";
 import { Memories } from "@prisma/client";
 import { unauthorizedError } from "@/errors";
 
-export async function getMemories(): Promise<Memories[]> {
+export async function getMemories() {
   const memories = await memorieRepository.find();
   return memories;
 }
 
-export async function getUserMemories(userId: number): Promise<Memories[]> {
+export async function getUserMemories(userId: number) {
   const memories = await memorieRepository.findByUserId(userId);
   return memories;
 }
 
-export async function getPrivateUserMemories(userId: number): Promise<Memories[]> {
+export async function getPrivateUserMemories(userId: number) {
   const memories = await memorieRepository.findPrivateByUserId(userId);
   return memories;
 }
