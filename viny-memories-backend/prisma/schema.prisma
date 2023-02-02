@@ -73,6 +73,7 @@ model Memories {
     description String     @db.VarChar(500)
     image       String     @db.VarChar(255)
     price       Int
+    isPrivate   Boolean    @default(true)
     createdAt   DateTime   @default(now())
     updatedAt   DateTime   @updatedAt
     Comments    Comments[]

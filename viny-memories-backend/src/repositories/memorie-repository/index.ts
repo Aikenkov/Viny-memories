@@ -3,6 +3,9 @@ import { CreateMemorieParams } from "@/services";
 
 async function find() {
   return prisma.memories.findMany({
+    where: {
+      isPrivate: false,
+    },
     orderBy: {
       createdAt: "desc",
     },
@@ -22,6 +25,7 @@ async function findByUserId(userId: number) {
   return prisma.memories.findMany({
     where: {
       userId,
+      isPrivate: false,
     },
     orderBy: {
       createdAt: "desc",
@@ -29,13 +33,26 @@ async function findByUserId(userId: number) {
   });
 }
 
-async function create({ userId, store, description, image, price }: CreateMemorieParams) {
+async function findPrivateByUserId(userId: number) {
+  return prisma.memories.findMany({
+    where: {
+      userId,
+      isPrivate: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+}
+
+async function create({ userId, store, description, image, price, isPrivate }: CreateMemorieParams) {
   return prisma.memories.create({
     data: {
       userId,
       store,
       image,
       description,
+      isPrivate,
       price,
     },
   });
@@ -64,6 +81,7 @@ const memorieRepository = {
   findFollowed,
   findByUserId,
   findMemorieById,
+  findPrivateByUserId,
 };
 
 export default memorieRepository;
