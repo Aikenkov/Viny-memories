@@ -1,5 +1,6 @@
 import { prisma } from "@/config";
 import { Prisma } from "@prisma/client";
+import { pictureUri } from "@/utils/patternPicture";
 
 async function findByEmail(email: string, select?: Prisma.UserSelect) {
   const params: Prisma.UserFindUniqueArgs = {
@@ -24,8 +25,19 @@ async function findById(id: number) {
 }
 
 async function create(data: Prisma.UserUncheckedCreateInput) {
-  return prisma.user.create({
-    data,
+  return await prisma.$transaction(async (tx) => {
+    const user = await tx.user.create({
+      data,
+    });
+
+    await tx.pictures.create({
+      data: {
+        userId: user.id,
+        pictureUri,
+      },
+    });
+
+    return user;
   });
 }
 

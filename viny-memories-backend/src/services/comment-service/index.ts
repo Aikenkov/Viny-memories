@@ -1,7 +1,7 @@
 import { Comments } from "@prisma/client";
 import memorieRepository from "@/repositories/memorie-repository";
 import CommentRepository from "@/repositories/comment-repository";
-import { notFoundError, unauthorizedError } from "@/errors";
+import { notFoundError } from "@/errors";
 
 async function verify(id: number) {
   const memorie = await memorieRepository.findMemorieById(id);
