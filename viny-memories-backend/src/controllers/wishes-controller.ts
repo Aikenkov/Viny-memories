@@ -3,12 +3,11 @@ import { Request, Response } from "express";
 import httpStatus from "http-status";
 import { CreateWishParams } from "@/services/wish-service";
 
-export async function createWish(req: Request, res: Response) {
+export async function upsertWish(req: Request, res: Response) {
   try {
-    const { userId } = res.locals;
     const data = req.body as CreateWishParams;
 
-    const wish = await wishService.postWish(data);
+    const wish = await wishService.upsertWish(data);
     return res.status(httpStatus.CREATED).json(wish);
   } catch (error) {
     return res.status(httpStatus.UNPROCESSABLE_ENTITY).send(error);

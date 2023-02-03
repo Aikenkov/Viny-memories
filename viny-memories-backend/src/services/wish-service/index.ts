@@ -7,7 +7,7 @@ export async function getWishes(userId: number) {
   return wishes;
 }
 
-export async function postWish(data: CreateWishParams) {
+export async function upsertWish(data: CreateWishParams) {
   const wishes = await wishRepository.upsert(data);
   return wishes;
 }
@@ -28,7 +28,7 @@ export type CreateWishParams = CreateMemorieParams & {
 
 const wishService = {
   getWishes,
-  postWish,
+  upsertWish,
   deleteWish,
 };
 

@@ -5,3 +5,4 @@ export * from "./like-service";
 export * from "./follow-service";
 export * from "./comment-service";
 export * from "./wish-service";
+export * from "./picture-service";
