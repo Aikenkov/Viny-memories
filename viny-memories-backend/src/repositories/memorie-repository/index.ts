@@ -7,6 +7,7 @@ async function find() {
       isPrivate: false,
     },
     include: {
+      Comments: true,
       likes: true,
     },
     orderBy: {
@@ -26,6 +27,7 @@ async function findFollowed(userId: number) {
       },
     },
     include: {
+      Comments: true,
       likes: true,
     },
     orderBy: {
@@ -41,6 +43,7 @@ async function findByUserId(userId: number) {
       isPrivate: false,
     },
     include: {
+      Comments: true,
       likes: true,
     },
     orderBy: {
@@ -57,6 +60,7 @@ async function findPrivateByUserId(userId: number) {
     },
     include: {
       likes: true,
+      Comments: true,
     },
     orderBy: {
       createdAt: "desc",
@@ -91,6 +95,7 @@ async function findMemorieById(memorieId: number) {
       id: memorieId,
     },
     include: {
+      Comments: true,
       likes: true,
     },
   });

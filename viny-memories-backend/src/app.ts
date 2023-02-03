@@ -8,7 +8,14 @@ import { loadEnv, connectDb, disconnectDB } from "@/config";
 loadEnv();
 
 import { handleApplicationErrors } from "@/middlewares";
-import { usersRouter, authenticationRouter, memoriesRouter, likesRouter, followsRouter } from "@/routers";
+import {
+  usersRouter,
+  authenticationRouter,
+  memoriesRouter,
+  likesRouter,
+  followsRouter,
+  commentsRouter,
+} from "@/routers";
 
 const app = express();
 app
@@ -20,6 +27,7 @@ app
   .use("/memories", memoriesRouter)
   .use("/likes", likesRouter)
   .use("/follows", followsRouter)
+  .use("/comments", commentsRouter)
   .use(handleApplicationErrors);
 
 export function init(): Promise<Express> {
