@@ -15,6 +15,7 @@ import {
   likesRouter,
   followsRouter,
   commentsRouter,
+  wishesRouter,
 } from "@/routers";
 
 const app = express();
@@ -28,6 +29,7 @@ app
   .use("/likes", likesRouter)
   .use("/follows", followsRouter)
   .use("/comments", commentsRouter)
+  .use("/wishes", wishesRouter)
   .use(handleApplicationErrors);
 
 export function init(): Promise<Express> {

@@ -1,6 +1,7 @@
 import memorieRepository from "@/repositories/memorie-repository";
 import { Memories } from "@prisma/client";
 import { unauthorizedError } from "@/errors";
+import { number } from "joi";
 
 export async function getMemories() {
   const memories = await memorieRepository.find();

@@ -54,6 +54,7 @@ export async function createMemorie(req: Request, res: Response) {
     return res.status(httpStatus.UNPROCESSABLE_ENTITY).send(error);
   }
 }
+
 export async function deleteMemorie(req: Request, res: Response) {
   try {
     const { userId } = res.locals;
